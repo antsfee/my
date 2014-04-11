@@ -10,7 +10,7 @@
 <a href="/upload">上传</a>
 <a href="/raphael">Raphael</a>
 <a href="/rabing">大饼</a>
-<a href="/tag">标签</a>
+<a href="/articleAdd">添加文章</a>
 <P></p>
 <P></p>
 <P></p>
@@ -33,7 +33,27 @@
 <% include basejs.ejs  %>
 <script type="text/javascript">
 
-	// $.get('/tags',function(data){  var tags = $.parseJSON(data); 	console.log("tags :  "+tags); });
+		// onload load all tags 
+
+		
+
+			$.ajax({url:"/tags" , type:"GET", dataType:"json"}).done(function(data){
+
+				var _a = data;
+
+					for(var i = data.length-1; i>=0 ;i--){
+
+					console.log(_a[i]);
+					console.log(_a[i].name);
+					console.log(_a[i]._id);
+
+				}	
+
+			}).fail(function(data){
+
+				console.log("errror");
+
+			});
 
 	$('.action').bind('click',function(){
 
@@ -45,7 +65,7 @@
 
 				$.ajax({
 
-					url:'/ctags?ctag='+encodeURIComponent(v),
+					url:'/ctags?ctag='+v,
 
 					type:"GET",
 

@@ -1,0 +1,117 @@
+<% include header.ejs %>
+</head>
+<body>
+<div class="container">
+<P></p>
+<P></p>
+<P></p>
+<P></p>
+<fieldset>
+	
+	<legend> </legend>
+
+	<form role="form">
+  <div class="form-group">
+    <label for="article-title"> title</label>
+    <input type="email" class="form-control" id="article-title" placeholder="type title">
+  </div>
+  <div class="form-group">
+    <label for="article-content">content</label>
+    <textarea  class="form-control" id="article-content" rows="3" placeholder="please type article content">
+
+    </textarea>
+  </div>
+
+  <div id="article-tags-box" class="form-group">
+
+
+  </div>
+  
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+	
+
+
+</fieldset>
+</div>
+<% include basejs.ejs  %>
+<script type="text/javascript">
+
+			$.ajax({url:"/tags" , type:"GET", dataType:"json"}).done(function(data){
+
+				var _a = data;
+
+				  var oc = document.createDocumentFragment();
+
+					for(var i = data.length-1; i>=0 ;i--){
+
+					var sp = document.createElement("span");
+
+					var la = document.createElement("label");
+
+						la.classname="checkbox-inline";
+
+					var box= document.createElement("input");
+						box.type='checkbox' ;
+						box.value= _a[i]._id;
+						box.name= "tags";
+
+					la.appendChild(box);
+					la.appendChild(document.createTextNode(_a[i].name));
+					sp.appendChild(la);
+					oc.appendChild(sp);
+					
+				}	
+
+				$('#article-tags-box').append(oc);
+
+
+			}).fail(function(data){
+
+				console.log("errror");
+
+			});
+
+	$('.action').bind('click',function(){
+
+		if($(this).attr('data-action')==="ctags"){
+
+			var v = $('.ctags-text').val();
+
+			if(v){
+
+				$.ajax({
+
+					url:'/ctags?ctag='+v,
+
+					type:"GET",
+
+					processData:false,
+
+					dataType:"json"
+
+
+				}).done(function(data){
+
+						console.info(data);
+
+						console.log($.parseJSON(data));
+
+					}).fail(function(data){
+
+						console.log("error");
+					});
+
+
+			}
+
+		}
+
+
+	})
+
+</script>
+<% include footer.ejs %>

@@ -301,9 +301,7 @@ module.exports = function(app) {
 
             console.log("current tags " + tags);
 
-            res.json(200, {
-                alltags: JSON.stringify(tags)
-            });
+            res.json(200,  tags);
 
 
 
@@ -320,19 +318,12 @@ module.exports = function(app) {
     app.get("/ctags", function(req, res) {
 
 
-        console.info(req.params);
-
-        console.info(req.body);
-
-
-        console.info(req.param);
-
         var ctag = req.query.ctag;
 
 
         console.log("ctag" + ctag);
 
-        var cname = decodeURI(ctag);
+        //var cname = decodeURI(ctag);
 
         //cname = encodeURIComponent_GBK(cname);
 
@@ -377,6 +368,17 @@ module.exports = function(app) {
     app.post('/tag', function(req, res) {
 
         Base.TagModule.find({});
+
+    });
+
+
+
+    // article add page render 
+
+    app.get("/articleAdd",function(req,res){
+
+        res.render("article_add",{title:"添加文章"});
+
 
     });
 
