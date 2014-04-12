@@ -13,12 +13,11 @@
 	<form role="form">
   <div class="form-group">
     <label for="article-title"> title</label>
-    <input type="email" class="form-control" id="article-title" placeholder="type title">
+    <input type="text" class="form-control" name="article-title" id="article-title" placeholder="type title">
   </div>
   <div class="form-group">
     <label for="article-content">content</label>
-    <textarea  class="form-control" id="article-content" rows="3" placeholder="please type article content">
-
+    <textarea  class="form-control" id="article-content" name="article-content" rows="3" placeholder="please type article content">
     </textarea>
   </div>
 
@@ -28,7 +27,7 @@
   </div>
   
 
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="button" class="btn btn-default" onclick="addArticle(this)">Submit</button>
 </form>
 
 
@@ -85,7 +84,7 @@
 
 				$.ajax({
 
-					url:'/ctags?ctag='+v,
+					url:'/ctags?ctag='+encodeURIComponent(v),
 
 					type:"GET",
 
@@ -98,8 +97,6 @@
 
 						console.info(data);
 
-						console.log($.parseJSON(data));
-
 					}).fail(function(data){
 
 						console.log("error");
@@ -111,7 +108,26 @@
 		}
 
 
-	})
+	});
+
+	function addArticle(fm){
+
+		var fm = fm , event = event || window.event;
+
+		var _data=  $(fm.form).serialize() ;
+
+
+		$.ajax({url:'/articleAdd', type:"Post" , data:_data }).done(function(data){
+
+
+
+		}).fail(function(data){
+
+
+
+		});
+
+	}
 
 </script>
 <% include footer.ejs %>

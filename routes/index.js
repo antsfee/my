@@ -13,7 +13,7 @@ var Base = require("../modules/base.js"),
     path = require("path"),
 
     util = require("util"),
-    ICVL = require('iconv-lite'),
+    iconv = require('iconv-lite'),
     querystring = require('querystring');
 
 // function encodeURIComponent_GBK(str) {
@@ -317,19 +317,16 @@ module.exports = function(app) {
 
     app.get("/ctags", function(req, res) {
 
-
         var ctag = decodeURIComponent(req.query.ctag);
-
-
         console.log("ctag" + ctag);
+        var cname = iconv.encode(ctag, "utf-8" );
 
-        var cname = ctag;
-
+        console.log("cname"+cname);
         //cname = encodeURIComponent_GBK(cname);
 
-        console.log(cname);
-
         //cname = cname.name;
+
+
 
         if (!cname) res.json(200, {
             notag: true
@@ -381,6 +378,33 @@ module.exports = function(app) {
             title: "添加文章"
         });
 
+
+    });
+
+      app.post("/articleAdd", function(req, res) {
+
+            if(req.session.user && req.session.user._id){
+
+                var ar = {} , _tagid = [];
+
+                    ar.title = decodeURIComponent(req.param('article-title') );
+                    ar.description = decodeURIComponent(req.param('article-content') );
+                    ar.owner = req.session.user._id;
+                    ar.tagId = decodeURIComponent(req.param("tags")).split(',');
+
+                var _ar = new Base.ArticleModule(ar);
+
+                _ar.save();
+
+                res.json(200,{"statue":"success"});
+
+                   
+
+            }else{
+
+            res.json(500,{"state":"nologing"});
+
+            }
 
     });
 
