@@ -1,0 +1,28 @@
+<% include header.ejs %>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-sx-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2">
+
+<div class="well" style="margin:auto;">
+<fieldset>
+	<form  method="post" name="upload" role="form" enctype="multipart/form-data">
+
+		<p class="input-group input-group-lg">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-check"></span></span>
+			<input type="file" name="image" class="form-control"/>
+		</p>
+
+		<%- message %>
+
+		<p>
+		<button type="submit" class="btn btn-primary btn-lg center-block">upload</button>
+		</p>
+
+	</form>
+</fieldset>
+</div>
+</div>
+</div>
+<% include footer.ejs %>

@@ -1,0 +1,37 @@
+<% include header.ejs %>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-sx-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2">
+
+<div class="well" style="margin:auto;">
+<fieldset>
+  <form  method="post" name="/register" role="form">
+    <p class="input-group input-group-lg">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      <input type="text" name="username" class="form-control" placeholder="用户名"/>
+    </p>
+
+    <p class="input-group input-group-lg">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-check"></span></span>
+      <input type="password" name="password" class="form-control" placeholder="密码"/>
+    </p>
+
+    <p class="input-group input-group-lg">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-check"></span></span>
+      <input type="password" name="repassword" class="form-control" placeholder="确认密码"/>
+    </p>
+
+    <%- message %>
+
+    <p>
+    <button type="submit" class="btn btn-primary btn-lg center-block">注册</button>
+    </p>
+
+  </form>
+</fieldset>
+</div>
+</div>
+</div>
+<% include footer.ejs %>
