@@ -105,15 +105,47 @@ UserSchema.statics.findByPhone = function(phone, cb) {
 
 //var UserModule = mongoose.model('User', UserSchema);
 
+var TagSchema = new Schema({
+
+
+    name: {
+
+        type: "String",
+
+        required: true
+    }
+
+
+});
+
 
 var ArticleSchema = new Schema({
 
-    title: String,
+    title: {
 
-    description: String,
+        type: 'String',
+        required: true
+
+    },
+
+    description: {
 
 
-    resource: []
+        type: 'String',
+        required: true
+
+    },
+
+    tagId: {
+
+
+        type: 'arrOfObjectId',
+        required: 'true'
+
+
+    }
+
+
 
 
 });
