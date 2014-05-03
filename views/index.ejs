@@ -3,8 +3,6 @@
 <body>
 <div class="container">
 
-<h1><%= title %></h1>
-
 <p>Welcome to <%= title %></p>
 
 <a href="/register">注册</a>
@@ -12,6 +10,50 @@
 <a href="/upload">上传</a>
 <a href="/raphael">Raphael</a>
 <a href="/rabing">大饼</a>
+<a href="/tag">标签</a>
+<P></p>
+<P></p>
+<P></p>
+<P></p>
+<fieldset>
+	
+	<legend>create tags </legend>
 
+
+
+	<input type="text" name="tags" class="ctags-text" placeholder="please insert tags name" />
+
+	<p id="currentinfo"></p>
+
+	<button class="action" data-action="ctags">create</button>
+
+
+</fieldset>
 </div>
+<% include basejs.ejs  %>
+<script type="text/javascript">
+
+	// $.get('/tags',function(data){  var tags = $.parseJSON(data); 	console.log("tags :  "+tags); });
+
+	$('.action').bind('click',function(){
+
+		if($(this).attr('data-action'==="ctags")){
+
+			var v = $('.ctags-text').val();
+
+			if(v!=''){
+
+				$('/getTags',function(data){
+				
+
+				})	;
+
+			}
+
+		}
+
+
+	})
+
+</script>
 <% include footer.ejs %>

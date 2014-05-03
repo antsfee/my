@@ -273,6 +273,44 @@ module.exports = function(app) {
     });
 
 
+    /* get all tags*/
+    app.get('/tags', function(req, res) {
+
+        Base.TagModule.find({}).exec(function(error, tags) {
+
+            if (error) throw error;
+
+            console.log("current tags " + tags);
+
+            res.json(200, {
+                alltags: JSON.stringify(tags)
+            });
+
+
+
+
+        });
+
+
+    });
+
+
+
+    /* tag to  create render html*/
+
+    app.get("/ctags", function(req, res) {
+
+
+
+    });
+
+    /* create tags post method*/
+
+    app.post('/tag', function(req, res) {
+
+        Base.TagModule.find({});
+
+    });
 
 
 };

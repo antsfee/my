@@ -113,10 +113,20 @@ var TagSchema = new Schema({
         type: "String",
 
         required: true
-    }
+    },
 
 
 });
+
+TagSchema.statics.findByName = function(name, cb) {
+
+    this.find({
+        name: new RegExp(name, "i")
+    }, cb);
+
+};
+
+
 
 
 var ArticleSchema = new Schema({
@@ -139,10 +149,18 @@ var ArticleSchema = new Schema({
     tagId: {
 
 
-        type: 'arrOfObjectId',
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Tag"
+        }],
         required: 'true'
 
 
+    },
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 
 
@@ -156,6 +174,8 @@ module.exports = {
 
 
     UserModule: conn.model('User', UserSchema),
+
+    TagModule: conn.model('Tag', TagSchema),
 
     ArticleModule: conn.model('Article', ArticleSchema)
 
