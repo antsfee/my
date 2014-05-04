@@ -37,16 +37,34 @@
 
 	$('.action').bind('click',function(){
 
-		if($(this).attr('data-action'==="ctags")){
+		if($(this).attr('data-action')==="ctags"){
 
 			var v = $('.ctags-text').val();
 
-			if(v!=''){
+			if(v){
 
-				$('/getTags',function(data){
-				
+				$.ajax({
 
-				})	;
+					url:'/ctags?ctag='+encodeURIComponent(v),
+
+					type:"GET",
+
+					processData:false,
+
+					dataType:"json"
+
+
+				}).done(function(data){
+
+						console.info(data);
+
+						console.log($.parseJSON(data));
+
+					}).fail(function(data){
+
+						console.log("error");
+					});
+
 
 			}
 

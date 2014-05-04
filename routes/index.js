@@ -12,7 +12,26 @@ var Base = require("../modules/base.js"),
 
     path = require("path"),
 
-    util = require("util");
+    util = require("util"),
+    ICVL = require('iconv-lite'),
+    querystring = require('querystring');
+
+// function encodeURIComponent_GBK(str) {
+//     if (str == null || typeof(str) == 'undefined' || str == '') return '';
+
+//     var a = str.toString().split('');
+
+//     for (var i = 0; i < a.length; i++) {
+//         var ai = a[i];
+//         if ((ai >= '0' && ai <= '9') || (ai >= 'A' && ai <= 'Z') || (ai >= 'a' && ai <= 'z') || ai === '.' || ai === '-' || ai === '_') continue;
+//         var b = ICVL.encode(ai, 'utf-8');
+//         var e = ['']; // 注意先放个空字符串，最保证前面有一个%
+//         for (var j = 0; j < b.length; j++)
+//             e.push(b.toString('hex', j, j + 1).toUpperCase());
+//         a[i] = e.join('%');
+//     }
+//     return a.join('');
+// }
 
 module.exports = function(app) {
 
@@ -300,6 +319,55 @@ module.exports = function(app) {
 
     app.get("/ctags", function(req, res) {
 
+
+        console.info(req.params);
+
+        console.info(req.body);
+
+
+        console.info(req.param);
+
+        var ctag = req.query.ctag;
+
+
+        console.log("ctag" + ctag);
+
+        var cname = decodeURI(ctag);
+
+        //cname = encodeURIComponent_GBK(cname);
+
+        console.log(cname);
+
+        //cname = cname.name;
+
+        if (!cname) res.json(200, {
+            notag: true
+        });
+
+        Base.TagModule.findOne({
+            name: cname
+        }).exec(function(error, tag) {
+
+            if (error) res.json(200, {
+                error: "make error "
+            });
+
+            if (tag) res.json(200, {
+                exist: true
+            });
+
+            var cc = new Base.TagModule({
+                name: cname
+            });
+
+            cc.save();
+
+            res.json(200, {
+                ctags: "ok"
+            });
+
+
+        });
 
 
     });
