@@ -65,7 +65,7 @@
 
 				$.ajax({
 
-					url:'/ctags?ctag='+v,
+					url:'/ctags?ctag='+encodeURIComponent(v),
 
 					type:"GET",
 
