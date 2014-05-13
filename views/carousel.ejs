@@ -1,0 +1,111 @@
+<% include basejs.ejs  %>
+<% include header.ejs %>
+</head>
+<body>
+<div class="container">
+
+		<!-- tab -->		
+		<div class="tab" id="tab"> 
+
+			<ul class='tab-nav'>
+
+				<li class="tab-nav-item">1</li>
+				<li class="tab-nav-item">2</li>
+				<li class="tab-nav-item">3</li>
+
+			</ul>
+
+
+			<div class='tab-content'>
+
+				<div class="tab-content-item">1</div>
+				<div class="tab-content-item">2</div>
+				<div class="tab-content-item">3</div>
+
+			</div>
+
+		</div>
+
+		<!-- tab end-->
+
+		<!-- carousel  -->
+
+		<div class="carousel" id="carousel">
+
+			<div class="carousel-view">
+
+				<div class="carousel-cont-item"></div>
+
+				<div class="carousel-cont-item"></div>
+
+				<div class="carousel-cont-item"></div>
+
+				<span class="carousel-prev"><</span>
+				<span class="carousel-next">></span>
+
+			</div>
+
+			<ul class="carousel-nav">
+
+				<li class="carousel-nav-item"></li>
+
+				<li class="carousel-nav-item"></li>
+
+				<li class="carousel-nav-item"></li>
+
+
+			</ul>
+
+		</div>
+
+		<!-- carousel  end -->
+
+
+
+</div>
+
+<script type="text/javascript">
+
+	var ants = ants || {};
+	ants.is_ipad =ants.is_ipad || (navigator.userAgent.match(/(iPad|iPod|iPhone)/i)!= null);
+	ants.is_mob = ants.is_mob || navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|win ce)/i) != null;
+	ants.core = ants.core || {}
+	ants.core.$ = ants.core.$  || (ants.is_mob ?  "zepto" : "jquery");
+
+	//console.log(ants.core.$);
+
+	require.config({
+		baseUrl:"/js",
+		paths:{
+			jquery:"core/jquery",
+			underscore:"core/underscore.min",
+			zepto:"core/zepto"
+		},
+
+		shim:{
+			"jquery":{
+				exports:"$"
+			},
+			"underscore":{
+				exports:"_"
+			},
+			"zepto":{
+				exports:"$"
+			}
+
+		}
+
+
+	});
+
+	
+require(["modules/carousel"],function(cr){
+
+	console.info(cr);
+	
+
+
+});
+
+</script>
+<% include footer.ejs %>

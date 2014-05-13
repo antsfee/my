@@ -409,4 +409,16 @@ module.exports = function(app) {
     });
 
 
+     app.get("/carousel",function(req,res){
+
+
+          res.render("carousel", {
+            title: "Carousel"
+        });
+
+
+
+     });
+
+
 };
