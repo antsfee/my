@@ -1,8 +1,10 @@
-<% include basejs.ejs  %>
 <% include header.ejs %>
+<link href="/css/widget.css" rel="stylesheet" media="screen">
+<script  type="text/javascript" src="/js/require.js" data-main="/js/main/widget.js" ></script>
 </head>
 <body>
 <div class="container">
+
 
 		<!-- tab -->		
 		<div class="tab" id="tab"> 
@@ -25,8 +27,9 @@
 			</div>
 
 		</div>
-
 		<!-- tab end-->
+
+
 
 		<!-- carousel  -->
 
@@ -34,24 +37,27 @@
 
 			<div class="carousel-view">
 
-				<div class="carousel-cont-item"></div>
+			  <ul class="carousel-cont-list">	
 
-				<div class="carousel-cont-item"></div>
-
-				<div class="carousel-cont-item"></div>
-
-				<span class="carousel-prev"><</span>
-				<span class="carousel-next">></span>
+				<li class="carousel-cont-item"><a><img src="img/carousel.png" /></a></li>
+				<li class="carousel-cont-item"><a><img src="img/carousel.png" /></a></li>
+				<li class="carousel-cont-item"><a><img src="img/carousel.png" /></a></li>
+			</ul>
+				<span class="carousel-btn carousel-prev"><</span>
+				<span class="carousel-btn carousel-next">></span>
 
 			</div>
 
 			<ul class="carousel-nav">
 
-				<li class="carousel-nav-item"></li>
+				<li class="carousel-nav-item">1
+				</li>
 
-				<li class="carousel-nav-item"></li>
+				<li class="carousel-nav-item">2
+				</li>
 
-				<li class="carousel-nav-item"></li>
+				<li class="carousel-nav-item">3
+				</li>
 
 
 			</ul>
@@ -63,49 +69,4 @@
 
 
 </div>
-
-<script type="text/javascript">
-
-	var ants = ants || {};
-	ants.is_ipad =ants.is_ipad || (navigator.userAgent.match(/(iPad|iPod|iPhone)/i)!= null);
-	ants.is_mob = ants.is_mob || navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|win ce)/i) != null;
-	ants.core = ants.core || {}
-	ants.core.$ = ants.core.$  || (ants.is_mob ?  "zepto" : "jquery");
-
-	//console.log(ants.core.$);
-
-	require.config({
-		baseUrl:"/js",
-		paths:{
-			jquery:"core/jquery",
-			underscore:"core/underscore.min",
-			zepto:"core/zepto"
-		},
-
-		shim:{
-			"jquery":{
-				exports:"$"
-			},
-			"underscore":{
-				exports:"_"
-			},
-			"zepto":{
-				exports:"$"
-			}
-
-		}
-
-
-	});
-
-	
-require(["modules/carousel"],function(cr){
-
-	console.info(cr);
-	
-
-
-});
-
-</script>
 <% include footer.ejs %>
