@@ -31,10 +31,8 @@ var ants = ants || {};
 	});
 
 	
-require(["modules/carousel"],function(cr){
+require(["jquery","modules/carousel"],function($,cr){
 
-	console.info(cr);
-	
-
+	$("#carousel").ants_carousel();
 
 });
