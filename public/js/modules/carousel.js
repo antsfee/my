@@ -1,89 +1,101 @@
-define((ants.is_mob ? ['zepto','underscore'] : ['jquery','underscore']) ,function($,_){
+define((ants.is_mob ? ['zepto', 'underscore'] : ['jquery', 'underscore']), function($, _) {
 
 
-		var $  = $ , _ = _ ;
+    var $ = $,
+        _ = _;
 
-		var ants  = ants || {} ;
+    var ants = ants || {};
 
-		// ants.carousel = ants.carousel || function(options){
+    $.fn.extend({
+        "ants_carousel": function(options) {
 
-			
+            var setings = {
 
+                "view": ".carousel-view", // viewport
 
+                "cont_list": ".carousel-cont-list",
 
-		// };
+                "cont_item": ".carousel-cont-item",
 
+                "prev": ".carousel-prev", // btn left
 
-	$.fn.extend({"ants_carousel":function(options){
+                "next": ".carousel-next", // btn right
 
-			var  setings = {
+                "nav": ".carousel-nav",
 
-				"view":".carousel-cont-view", // viewport
+                "nav_item": ".carousel-nav-item",
 
-				"cont-list":".carousel-cont-list",
+                "btn_switch": false, // switch to show or hide  btn left and right , hide default 
 
-				"cont-item":".carousel-cont-item",
+                "nav_switch": true, // switch to show or hide nav 
+                "delay": 2000, // time to switch 
 
-				"prev":".carousel-prev", // btn left
+                "currentIndex": 0 // make window show the content index default 0 
+            },
 
-				"next":".caroousel-next",// btn right
+                opt = $.extend({}, setings, options),
 
-				"nav":".carousel-nav",
-
-				"nav-item":".caroousel-nav-item",
-
-				"btn_switch":false , // switch to show or hide  btn left and right , hide default 
-
-				"nav_switch":true , // switch to show or hide nav 
-
-				"delay":2000, // time to switch 
-
-				"currentIndex":0 // make window show the content index default 0 
-			},
-
-			opt =  $.extend({} , setings , options), prev , next , that = $(this);
-
-			 function init(){
-
-			 // mobile or pc 
-
-			(!$.jquery) ?  function(){} : function(){
-
-				var btns = that.children(opt.view);
-
-				prev = btns.children(opt.prev) , next= btns.children(opt.next);
-
-				prev.on("click ",t_left();
-
-				next.on('click',t_right());
-
-			}
-
-
-			 }
-
-
-			 function t_left(){
+                prev, next, vw, $v, $items, that = $(this);
 
 
 
-			 }
 
-			 function t_right(){
+            function t_left() {
 
+                console.log("messageleft");
 
+            }
 
-			 }
+            function t_right() {
 
+                console.log("messageright");
 
-
-			 init();
-
-			}
-
+            }
 
 
-	});
+            function init() {
+
+                // mobile or pc 
+                $v = that.children(opt.view);
+
+                vw = $v.width();
+
+                $items = $v.children(opt.cont_list).children(opt.cont_item);
+
+                $navs = $that.children(opt.nav).children(opt.nav_item);
+
+                prev = $v.children(opt.prev);
+
+                next = $v.children(opt.next);
+
+                if (!that.jquery) {
+
+
+                    $v.on("swipeLeft", t_left);
+
+                    $v.on("swipeRight", t_right);
+
+
+
+                } else {
+
+                    prev.on("click", t_left);
+
+                    next.on("click", t_right);
+
+                }
+
+
+            }
+
+
+            init();
+
+        }
+
+
+
+    });
 
 
 

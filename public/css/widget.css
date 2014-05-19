@@ -67,3 +67,44 @@ ul , li { list-style: none; list-style-type: none;}
 
 	cursor: pointer;
 }
+
+
+.carousel .carousel-btn{
+
+
+	position:absolute;
+
+	z-index:10;
+
+
+	width:30px;
+
+	height:80px;
+
+	font-weight: 800;
+
+	font-size:3em;
+
+	background-color:#333; color:#ffffff;
+
+	vertical-align: middle;
+
+	text-align: center;
+
+
+}
+
+.carousel .carousel-prev{
+
+	left:0;
+
+
+
+}
+
+.carousel .carousel-next{
+
+	right:0;
+
+
+}
